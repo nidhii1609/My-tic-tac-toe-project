@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tic Tac Toe</title>
+	<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	
+	<div id="container">
+		<div id="sidebar_wrap">
+			<div id="sidebar">	
+		        <div id=characters>	
+					<div class = human > 
+						<img src="images/human.png">
+					</div>
+					<div id=vs> vs </div>
+					<div class = robot> 
+						<img src="images/robot.png">
+					</div>
+				</div>
+				<div class="field">
+					<label>Depth</label>
+					<div class="depth_choices" id="depth">
+						<ul>
+							<li data-value="1">1</li>
+							<li data-value="2">2</li>
+							<li data-value="3">3</li>
+							<li data-value="4">4</li>
+							<li data-value="-1" class="active">Unlimited</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="field">
+					<label>Starting Player</label>
+					<div class="starting_player_choices" id="starting_player">
+						<ul>
+							<li data-value="1" class="active">Human</li>
+
+							<li data-value="0">Computer</li>
+						</ul>
+					</div>
+				</div>
+
+				<div>
+				    <div class="text"></div>
+				</div>
+				<button id="newgame" class="endgame" onClick="startGame()">New Game
+						<div class="text"></div>
+				</button>
+				
+			</div>
+		</div>
+		
+		<div id="board_wrap">
+			<div class="board" id="board">
+				   <table>
+					    <tr>
+					      <td class="cell" id="0"></td>
+					      <td class="cell" id="1"></td>
+					      <td class="cell" id="2"></td>
+					    </tr>
+					    <tr>
+					      <td class="cell" id="3"></td>
+					      <td class="cell" id="4"></td>
+					      <td class="cell" id="5"></td>
+					    </tr>
+					    <tr>
+					      <td class="cell" id="6"></td>
+					      <td class="cell" id="7"></td>
+					      <td class="cell" id="8"></td>
+					    </tr>
+				  </table>
+			</div>
+		</div>
+
+	</div>
+
+
+	<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
