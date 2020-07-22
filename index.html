@@ -35,21 +35,19 @@
 
 				<div class="field">
 					<label>Starting Player</label>
-					<div class="starting_player_choices" id="starting_player">
+					<div class="starting_player_choices" id="starting_player" >
 						<ul>
-							<li data-value="1" class="active">Human</li>
+							<li data-value="1" id="human" class="active">Human</li>
 
-							<li data-value="0">Computer</li>
+							<li data-value="0" id="comp">Computer</li>
 						</ul>
 					</div>
 				</div>
 
-				<div>
+				<div class="endgame">
 				    <div class="text"></div>
 				</div>
-				<button id="newgame" class="endgame" onClick="startGame()">New Game
-						<div class="text"></div>
-				</button>
+				<button id="newgame" onClick="startGame()">New Game</button>
 				
 			</div>
 		</div>
@@ -79,6 +77,11 @@
 	</div>
 
 
-	<script type="text/javascript" src="script.js"></script>
+	
+	<!-- jQuery (Bootstrap JS plugins depend on it) -->
+	  <script src="js/jquery-2.1.4.min.js"></script>
+	  <script src="js/bootstrap.min.js"></script>
+	  <script src="js/ajax-utils.js"></script>
+	  <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
