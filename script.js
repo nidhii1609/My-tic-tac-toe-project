@@ -1,6 +1,6 @@
 var origBoard;
-const huPlayer = 'O';
-const aiPlayer = 'X';
+var huPlayer='X';
+var aiPlayer='O';
 const winCombos = [
 	[0, 1, 2],
 	[3, 4, 5],
@@ -20,19 +20,30 @@ function hasClass(el, className) {
 function addClass(el, className) {
 	if (el.classList) el.classList.add(className);else if (!hasClass(el, className)) el.className += " " + className;
 }
+function removeClass(el, className) {
+	if (el.classList) el.classList.remove(className);else if (hasClass(el, className)) {
+		var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
+		el.className = el.className.replace(reg, ' ');
+	}
+}
 
-function startGame(depth, starting_player) {
+function startGame(depth,Human_symbol) {
+
 	document.querySelector(".endgame").style.display = "none";
 	origBoard = Array.from(Array(9).keys());
+
+	if(Human_symbol==1){
+			huPlayer='X';
+			aiPlayer='O';
+	}if(Human_symbol==0){
+			huPlayer='O';
+			aiPlayer='X';
+	}
 	
 	for (var i = 0; i < cells.length; i++) {
 		cells[i].innerText = '';
 		cells[i].style.removeProperty('background-color');
 		cells[i].addEventListener('click', turnClick, false);
-		if(starting_player==0){
-			console.log(starting_player);
-			minimax(origBoard, aiPlayer);
-		}
 	}
 	
 	
@@ -67,15 +78,16 @@ function checkWin(board, player) {
 }
 
 function gameOver(gameWon) {
+	declareWinner(gameWon.player == huPlayer ? "You win!" : "You lose.");
 	for (let index of winCombos[gameWon.index]) {
 		document.getElementById(index).style.backgroundColor =
-		    gameWon.player == huPlayer ? "blue" : "red";
+		    gameWon.player == huPlayer ? " #8c080b" : " #8c080b";
 		    
 	}
 	for (var i = 0; i < cells.length; i++) {
 		cells[i].removeEventListener('click', turnClick, false);
 	}
-	declareWinner(gameWon.player == huPlayer ? "You win!" : "You lose.");
+	
 }
 
 function declareWinner(who) {
@@ -94,7 +106,7 @@ function bestSpot() {
 function checkTie() {
 	if (emptySquares().length == 0) {
 		for (var i = 0; i < cells.length; i++) {
-			//cells[i].style.backgroundColor = "green";
+			cells[i].style.backgroundColor = "green";
 			cells[i].removeEventListener('click', turnClick, false);
 		}
 		declareWinner("Tie Game!");
@@ -106,14 +118,6 @@ function checkTie() {
 function minimax(newBoard, player) {
 
 	var availSpots = emptySquares();
-
-	if(starting_player===0){
-		var center_and_corners = [0, 2, 4, 6, 8];
-		var first_choice = center_and_corners[Math.floor(Math.random() * center_and_corners.length)];
-		//cells[first_choice].innerText = aiPlayer;
-		starting_player=1;
-		return cells[first_choice];
-	}
 
 	if (checkWin(newBoard, huPlayer)) {
 		return {score: -10};
@@ -141,15 +145,36 @@ function minimax(newBoard, player) {
 		moves.push(move);
 	}
 
+	/*if(starting_player===0){
+		var center_and_corners = [0, 2, 4, 6, 8];
+		var first_choice = center_and_corners[Math.floor(Math.random() * center_and_corners.length)];
+		//cells[first_choice].innerText = aiPlayer;
+		starting_player=1;
+		return cells[first_choice];
+	}
+*/
+
 	var bestMove;
 	if(player === aiPlayer) {
 		var bestScore = -10000;
-		for(var i = 0; i < moves.length; i++) {
-			if (moves[i].score > bestScore) {
-				bestScore = moves[i].score;
-				bestMove = i;
+		//if(depth===-1){
+			for(var i = 0; i < moves.length; i++) {
+				if (moves[i].score > bestScore) {
+					bestScore = moves[i].score;
+					bestMove = i;
+				}
 			}
-		}
+		/*}else if(depth===1){
+
+
+
+		}else if(depth===2){
+
+		}else if(depth===3){
+
+		}else if(depth===4){
+
+		}*/
 	} else {
 		var bestScore = 10000;
 		for(var i = 0; i < moves.length; i++) {
@@ -167,33 +192,35 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 	
 	var depth = -1;
-	var starting_player = 1;
-	startGame(depth, starting_player);
+	var Human_symbol=1;
+	startGame(depth,Human_symbol);
 
-	/*document.getElementById("depth").addEventListener("click", function (event) {
-		if (event.target.tagName !== "LI" || hasClass(event.target, 'active')) return;
-		var depth_choices = [].concat(_toConsumableArray(document.getElementById("depth").children[0].children));
+	document.getElementById("depth").addEventListener("click", function (event) {
+		if (event.target.tagName !== "LI" || event.target.dataset.value===-1) return;
+
+		var depth_choices = document.querySelectorAll(".depth_choices ul li");
+		console.log(depth_choices);
 		depth_choices.forEach(function (choice) {
 			removeClass(choice, 'active');
 		});
 		addClass(event.target, 'active');
 		depth = event.target.dataset.value;
-	}, false);*/
+	}, false);
 
-	document.getElementById("starting_player").addEventListener("click", function (event) {
-		if (event.target.tagName !== "LI" || event.target.dataset.value===1) return;
-		
-		else{
-			var classes = document.querySelector("#human").className;
-			classes = classes.replace(new RegExp("active", "g"), "");
-			document.querySelector("#human").className = classes;
-			addClass(event.target, 'active');
-			starting_player = event.target.dataset.value;
-		}
+	document.getElementById("symbol").addEventListener("click", function (event) {
+
+		Human_symbol=event.target.dataset.value;
+		var symbol_choices = document.querySelectorAll(".symbol_choices ul li");
+		symbol_choices.forEach(function (choice) {
+			removeClass(choice, 'active');
+		});
+		addClass(event.target, 'active');
 
 	}, false);
+
+
 	document.getElementById("newgame").addEventListener('click', function () {
-		startGame(depth, starting_player);
+		startGame(depth,Human_symbol);
 	});
 
 });
