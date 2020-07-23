@@ -13,6 +13,19 @@ const winCombos = [
 	[6, 4, 2]
 ]
 
+	function hasClass(el, className) {
+	if (el.classList) return el.classList.contains(className);else return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
+	}
+	function addClass(el, className) {
+		if (el.classList) el.classList.add(className);else if (!hasClass(el, className)) el.className += " " + className;
+	}
+	function removeClass(el, className) {
+		if (el.classList) el.classList.remove(className);else if (hasClass(el, className)) {
+			var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
+			el.className = el.className.replace(reg, ' ');
+		}
+	}
+
 	var depth = -1;
 	var Human_symbol=1;
 	startGame(depth,Human_symbol);
@@ -42,19 +55,6 @@ const winCombos = [
 	document.getElementById("newgame").addEventListener('click', function () {
 		startGame(depth,Human_symbol);
 	});
-
-function hasClass(el, className) {
-	if (el.classList) return el.classList.contains(className);else return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
-}
-function addClass(el, className) {
-	if (el.classList) el.classList.add(className);else if (!hasClass(el, className)) el.className += " " + className;
-}
-function removeClass(el, className) {
-	if (el.classList) el.classList.remove(className);else if (hasClass(el, className)) {
-		var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
-		el.className = el.className.replace(reg, ' ');
-	}
-}
 
 function startGame(depth,Human_symbol) {
 	
@@ -216,36 +216,3 @@ function minimax(newBoard, player) {
 	return moves[bestMove];
 }
 
-/*document.addEventListener("DOMContentLoaded", function (event) {
-	
-	var depth = -1;
-	var Human_symbol=1;
-	startGame(depth,Human_symbol);
-
-	document.getElementById("depth").addEventListener("click", function (event) {
-		if (event.target.tagName !== "LI" || event.target.dataset.value===-1) return;
-
-		var depth_choices = document.querySelectorAll(".depth_choices ul li");
-		depth_choices.forEach(function (choice) {
-			removeClass(choice, 'active');
-		});
-		addClass(event.target, 'active');
-		depth = event.target.dataset.value;
-	}, false);
-
-	document.getElementById("symbol").addEventListener("click", function (event) {
-
-		Human_symbol=event.target.dataset.value;
-		var symbol_choices = document.querySelectorAll(".symbol_choices ul li");
-		symbol_choices.forEach(function (choice) {
-			removeClass(choice, 'active');
-		});
-		addClass(event.target, 'active');
-
-	}, false);
-
-	document.getElementById("newgame").addEventListener('click', function () {
-		startGame(depth,Human_symbol);
-	});
-
-});*/

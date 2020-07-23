@@ -75,7 +75,7 @@ img {
   color: solid black;
   font-family: 'Lora', cursive;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: bold;
   width: 100%;
   margin-top: 10px; 
 }
