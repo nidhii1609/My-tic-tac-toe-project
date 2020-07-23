@@ -2,8 +2,7 @@
 <html>
 <head>
 	<title>Tic Tac Toe</title>
-	<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -21,7 +20,7 @@
 					</div>
 				</div>
 				<div class="field">
-					<label>Depth</label>
+					<label>Level</label>
 					<div class="depth_choices" id="depth">
 						<ul>
 							<li data-value="1">1</li>
@@ -44,9 +43,7 @@
 					</div>
 				</div>
 
-				<div class="endgame">
-				    <div class="text"></div>
-				</div>
+				
 				<button id="newgame" onClick="startGame()">New Game</button>
 				
 			</div>
@@ -76,7 +73,9 @@
 
 	</div>
 
-
+	<div class="endgame">
+		<div class="text"></div>
+	</div>
 	
 	<!-- jQuery (Bootstrap JS plugins depend on it) -->
 	  <script src="js/jquery-2.1.4.min.js"></script>

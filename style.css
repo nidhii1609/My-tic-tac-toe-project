@@ -8,7 +8,7 @@ body {
 body {
   background-color: #eaeaea;
   position: relative;
-  font-family: 'Gloria Hallelujah', cursive; }
+  font-family: 'Lora', cursive; }
   body:before {
     content: '';
     background-color: #8c080b;
@@ -72,8 +72,8 @@ img {
   border: none;
   padding: 13px 26px;
   border-radius: 2px;
-  color: #ffffff;
-  font-family: 'Gloria Hallelujah', cursive;
+  color: solid black;
+  font-family: 'Lora', cursive;
   cursor: pointer;
   font-weight: 600;
   width: 100%;
@@ -161,12 +161,12 @@ table tr td:last-child {
 .endgame{
 
   display: none;
-  width: 250px;
+  width: 350px;
   top: 200px;
   background-color: #8c080b;
   position: absolute;
   left: 50%;
-  margin-left: -220px;
+  margin-left: -120px;
   padding-top: 50px;
   padding-bottom: 50px;
   text-align: center;
