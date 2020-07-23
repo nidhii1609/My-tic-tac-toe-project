@@ -68,7 +68,7 @@ img {
 }
 
 #newgame {
-  background-color: #52d29d;
+  background-color: #0dcabe;
   border: none;
   padding: 13px 26px;
   border-radius: 2px;
@@ -88,7 +88,7 @@ img {
     margin: 0;
     padding: 0;
     list-style: none;
-    border: 1px solid #8c8c8c;
+    border: 1px solid #191979;
     border-radius: 2px;
     overflow: hidden;
     font-size: 15px; 
@@ -96,16 +96,16 @@ img {
     #sidebar .field ul li {
       float: left;
       padding: 10px 15px;
-      border-right: 1px solid #8c8c8c;
+      border-right: 1px solid #191979;
       cursor: pointer;
-      color: #8c8c8c; 
+      color: #191979; 
     }
       #sidebar .field ul li:hover {
         background-color: #b7b7b7;
         color: #fff; 
       }
       #sidebar .field ul li.active {
-        background-color: #8c8c8c;
+        background-color: #191979;
         color: #fff; 
       }
       #sidebar .field ul li:last-child {
@@ -163,16 +163,16 @@ table tr td:last-child {
   display: none;
   width: 250px;
   top: 200px;
-  background-color: #8c080b;;
+  background-color: #8c080b;
   position: absolute;
   left: 50%;
-  margin-left: -130px;
+  margin-left: -220px;
   padding-top: 50px;
   padding-bottom: 50px;
   text-align: center;
   border-radius: 5px;
   color: white;
-  font-size: 2em;
+  font-size: 3em;
 
 
 }

@@ -78,12 +78,13 @@ function checkWin(board, player) {
 }
 
 function gameOver(gameWon) {
-	declareWinner(gameWon.player == huPlayer ? "You win!" : "You lose.");
+	
 	for (let index of winCombos[gameWon.index]) {
 		document.getElementById(index).style.backgroundColor =
 		    gameWon.player == huPlayer ? " #8c080b" : " #8c080b";
 		    
 	}
+	declareWinner(gameWon.player == huPlayer ? "You win!" : "You lose.");
 	for (var i = 0; i < cells.length; i++) {
 		cells[i].removeEventListener('click', turnClick, false);
 	}
@@ -106,7 +107,7 @@ function bestSpot() {
 function checkTie() {
 	if (emptySquares().length == 0) {
 		for (var i = 0; i < cells.length; i++) {
-			cells[i].style.backgroundColor = "green";
+			//cells[i].style.backgroundColor = "green";
 			cells[i].removeEventListener('click', turnClick, false);
 		}
 		declareWinner("Tie Game!");
@@ -157,16 +158,17 @@ function minimax(newBoard, player) {
 	var bestMove;
 	if(player === aiPlayer) {
 		var bestScore = -10000;
-		//if(depth===-1){
+		
 			for(var i = 0; i < moves.length; i++) {
 				if (moves[i].score > bestScore) {
 					bestScore = moves[i].score;
 					bestMove = i;
 				}
 			}
-		/*}else if(depth===1){
-
-
+		/*if(depth===-1){
+			return moves[bestMove];
+		}else if(depth===1){
+			
 
 		}else if(depth===2){
 
