@@ -127,7 +127,7 @@ function emptySquares() {
 }
 
 function bestSpot() {
-	return minimax(origBoard, aiPlayer,window.depth).index;
+	return minimax(origBoard, aiPlayer).index;
 }
 
 function checkTie() {
@@ -147,6 +147,7 @@ function minimax(newBoard, player) {
 	var availSpots = emptySquares();
 	var my_depth=window.depth;
 
+
 	if (checkWin(newBoard, huPlayer)) {
 		return {score: -10};
 	} else if (checkWin(newBoard, aiPlayer)) {
@@ -154,7 +155,6 @@ function minimax(newBoard, player) {
 	} else if (availSpots.length === 0) {
 		return {score: 0};
 	}
-
 	var moves = [];
 	for (var i = 0; i < availSpots.length; i++) {
 		var move = {};
@@ -164,6 +164,7 @@ function minimax(newBoard, player) {
 		if (player == aiPlayer) {
 			var result = minimax(newBoard, huPlayer);
 			move.score = result.score;
+
 		} else {
 			var result = minimax(newBoard, aiPlayer);
 			move.score = result.score;
@@ -171,38 +172,52 @@ function minimax(newBoard, player) {
 
 		newBoard[availSpots[i]] = move.index;
 
+
 		moves.push(move);
 	}
 
 	var bestMove;
 	if(player === aiPlayer) {
 		var bestScore = -10000;
-		
-			for(var i = 0; i < moves.length; i++) {
-				if (moves[i].score > bestScore) {
-					bestScore = moves[i].score;
-					bestMove = i;
-				}
+
+		if(my_depth==1){
+			var random=moves[Math.floor(Math.random()*moves.length)];
+			return random;
+		}
+
+		for(var i = 0; i < moves.length; i++) {
+			if (moves[i].score > bestScore) {
+				bestScore = moves[i].score;
+				bestMove = i;
 			}
+		}
 
 		if(my_depth==-1){
 			return moves[bestMove];
 		}
-		if(my_depth==1){
-			var random=moves[Math.floor(Math.random()*moves.length)];
-			return random;
+		
+		/*if(depth==3){
+			var temp=[];
+			for(var i=0;i<moves.length;i++){
+				if(moves[i].second==0){
+					temp.push(moves[i]);
+				}
+			}
+			var random=temp[Math.floor(Math.random()*temp.length)];
 
-		}
-		/*if(depth==2){
-
-
-		}else if(depth==3){
-
-
-		}else if(depth==4){
-
+			return moves[random];
 
 		}*/
+		if(my_depth==3){
+			var temp=[];
+
+			for(var i=0;i<moves.length;i++){
+				if(moves[i].score<0){
+					return moves[i];
+				}
+			}
+
+		}
 	} else {
 		var bestScore = 10000;
 		for(var i = 0; i < moves.length; i++) {
