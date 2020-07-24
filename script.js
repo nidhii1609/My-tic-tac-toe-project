@@ -195,28 +195,34 @@ function minimax(newBoard, player) {
 		if(my_depth==-1){
 			return moves[bestMove];
 		}
-		
-		/*if(depth==3){
-			var temp=[];
-			for(var i=0;i<moves.length;i++){
-				if(moves[i].second==0){
-					temp.push(moves[i]);
-				}
+		if(my_depth==2){
+
+			var random = Math.floor(Math.random() * 10);
+			if( random <  5 ){
+					return moves[bestMove];
+			}else{
+				var r=moves[Math.floor(Math.random()*moves.length)];
+				return r;
 			}
-			var random=temp[Math.floor(Math.random()*temp.length)];
 
-			return moves[random];
-
-		}*/
+		}
 		if(my_depth==3){
-			var temp=[];
-
-			for(var i=0;i<moves.length;i++){
-				if(moves[i].score<0){
-					return moves[i];
-				}
+			var random = Math.floor(Math.random() * 10);
+			if( random <  7 ){
+					return moves[bestMove];
+			}else{
+				var r=moves[Math.floor(Math.random()*moves.length)];
+				return r;
 			}
-
+		}
+		if(my_depth==4){
+			var random = Math.floor(Math.random() * 10);
+			if( random <  9 ){
+					return moves[bestMove];
+			}else{
+				var r=moves[Math.floor(Math.random()*moves.length)];
+				return r;
+			}
 		}
 	} else {
 		var bestScore = 10000;
